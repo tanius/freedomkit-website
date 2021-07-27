@@ -97,12 +97,16 @@
         <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
           <p title="{{ entry.title }}" class="title">{{entry.title|shortentitle}}</p>
         </a>
+        <!-- Author rendering in main book lists is disabled on freedomkit.org as it's not useful here.
+          Affects "Books", "Read", "Unread", "Archived" etc.. Author is still shown in lists of 
+          random books, which have their own templating (above in this file and in discover.html). -->
+        {# 
         <p class="author">
           {% for author in entry.authors %}
             {% if loop.index > g.config_authors_max and g.config_authors_max != 0 %}
               {% if not loop.first %}
                 <span class="author-hidden-divider">&amp;</span>
-			  {% endif %}
+			        {% endif %}
               <a class="author-name author-hidden" href="{{url_for('web.books_list', data='author', book_id=author.id, sort_param='new') }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
               {% if loop.last %}
                 <a href="#" class="author-expand" data-authors-max="{{g.config_authors_max}}" data-collapse-caption="({{_('reduce')}})">(...)</a>
@@ -120,6 +124,7 @@
             {% endif %}
           {%endfor%}
         </p>
+        #}
         {% if entry.series.__len__() > 0 %}
         <p class="series">
           <a href="{{url_for('web.books_list', data='series', sort_param='new', book_id=entry.series[0].id )}}">
