@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="111.94114mm"
+   height="10.543633mm"
+   viewBox="0 0 111.94114 10.543633"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="FreedomKit.Logo.Horizontal.5by1.svg"
+   inkscape:export-filename="/home/matthias/Projects/Freedom_Kit/Logo/FreedomKit.Logo.Horizontal.5by1.400x80.png"
+   inkscape:export-xdpi="101.6"
+   inkscape:export-ydpi="101.6">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="574.5227"
+     inkscape:cy="0.63269016"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g834"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="1002"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <sodipodi:guide
+       position="15.772399,47.285157"
+       orientation="1,0"
+       id="guide825"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-2.6539404,0.17987588"
+       orientation="0,1"
+       id="guide857"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-26.464135,-26.284259"
+       orientation="-0.70710678,0.70710678"
+       id="guide864"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="60.665729,-28.956954"
+       orientation="0.70710678,0.70710678"
+       id="guide866"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="29.465218,9.9317521"
+       orientation="0,1"
+       id="guide1597"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-67.671918,-76.033011)">
+    <g
+       id="g834"
+       transform="translate(36.893939,-15.501632)">
+      <text
+         id="text823"
+         y="101.91003"
+         x="66.309799"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.02078819px;line-height:1.25;font-family:Calibri;-inkscape-font-specification:Calibri;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#383838;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:'IBM Plex Sans Var';-inkscape-font-specification:'IBM Plex Sans Var Medium';fill:#383838;fill-opacity:1;stroke-width:0.26458332"
+           y="101.91003"
+           x="66.309799"
+           id="tspan821"
+           sodipodi:role="line">Freedom <tspan
+   id="tspan823"
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:'IBM Plex Sans Var';-inkscape-font-specification:'IBM Plex Sans Var Light';fill:#383838;fill-opacity:1;stroke-width:0.26458332">Kit</tspan></tspan></text>
+      <g
+         id="g862"
+         transform="matrix(0.82016921,0,0,0.82016921,8.6458921,17.983507)"
+         style="stroke-width:1.21926057">
+        <path
+           style="fill:#0477c3;fill-opacity:1;stroke-width:1.21926057"
+           d="m 58.619558,99.520367 2.031793,-1.983999 4.775376,4.777752 -4.052349,-0.004 z"
+           id="path845"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+        <path
+           style="fill:#0477c3;fill-opacity:1;stroke-width:1.21926057"
+           d="m 40.07207,98.357477 7.877041,-7.86619 11.81247,11.812473 H 43.997859 Z"
+           id="path845-3"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+        <path
+           style="fill:#0477c3;fill-opacity:1;stroke-width:1.21926057"
+           d="m 34.612414,94.659827 7.315296,7.654293 H 26.984781 Z"
+           id="path845-3-6"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+      </g>
+    </g>
+  </g>
+</svg>
