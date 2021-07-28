@@ -9,8 +9,8 @@ A script to import a bibliography list in Markdown with specific convention into
 The format conventions for the book list are as seen at https://edgeryders.eu/t/8791
 
 USAGE:
-    autarkylibrary2calibre.py [-v] BOOKLIST_FILE CALIBREDB_DIR
-    autarkylibrary2calibre.py -h
+    md-to-calibre.py [-v] BOOKLIST_FILE CALIBREDB_DIR
+    md-to-calibre.py -h
 
 OPTIONS:
     -h, --help     Show this usage and options help message.
@@ -40,8 +40,13 @@ INSTALLATION:
 #   db_connection.commit()
 #   db_connection.close()
 # TODO: Fix that Markdown lists are not yet converted to HTML. This might be because they do not 
-#   have a blank line above them. Affects three books: Autarky Library book IDs 28, 29, 244. So far, 
+#   have a blank line above them, which has been corrected in the source files now but not yet 
+#   tested during importing. Affects three books: Autarky Library book IDs 28, 29, 244. So far, 
 #   the error has been fixed manually in the script output.
+# TODO: Fix that empty lines containing just space characters are not yet recognized as separating 
+#   literature entries. (Not important, as this has been fixed in the source file to import now.)
+# TODO: Allow "[" and "]" inside link text as long as they appear in matched pairs. Not important, 
+#   as these characters are no longer used in the current list to import ("Autarky Library").
 
 
 # Python standard library packages.
@@ -55,41 +60,55 @@ from docopt import docopt
 import markdown
 
 
-def calibre_title(dict):
+def calibredb_title_args(dict):
     """Catch and log errors related to the title field, and provide the title in a safe format."""
     if dict['title'] is not None:
-        return dict['title']
+        return ['--title', dict['title']]
     else:
         log.error(f'No title in book record with ID {dict["id"]}')
-        return '' # "None" would crash the subprocess.run call to calibredb.
+        # ['--title', ''] would also work, but ['--title', None] would crash the subprocess.run 
+        # call to calibredb later.
+        return []
 
 
-def calibre_pubdate(dict):
+def calibredb_pubdate_args(dict):
     """Render a publication date in the yyyy-mm-dd format expected by calibredb."""
     if dict['year'] is not None:
-        return f'{dict["year"]}-01-01'
+        return ['--field', f'pubdate:{dict["year"]}-01-01']
     else:
-        # Providing an empty string to calibredb sets the value to "Undefined", internally 
-        # represented as 0101-01-01T01:00:00+01:00
-        return ''
+        # Returning an empty list so that no "--field pubdate:…" will be included in the 
+        # calibredb call at all, keeping the value "Undefined", which is internally represented as 
+        # 0101-01-01T01:00:00+01:00. A literal of "" would have the same effect.
+        return []
 
 
-def calibre_comments(dict):
-    """Render additional metadata into a Calibre comments field."""
-    link_comment = ''
-    if dict['link'] is not None: 
-        link_comment = f'<p>Download: <a href="{dict["link"]}">external link</a></p>\n'
-
-    pages_comment = ''
+def calibredb_pages_args(dict):
+    """Render a page count in the format expected by calibredb."""
     if dict['pages'] is not None:
-        pages_comment = f'<p>Pages: {dict["pages"]}</p>\n'
+        return ['--field', f'#pages:{dict["pages"]}']
+    else:
+        return []
 
-    description_comment = ''
+
+def calibredb_link_args(dict):
+    """Render the Calibre link field name and value appropriate for the link we have."""
+    if dict['link'] is None:
+        return []
+    elif dict['link'].endswith('.pdf'):
+        return ['--field', f'#link_pdf:{dict["link"]}']
+    elif dict['link'].endswith('.epub'):
+        return ['--field', f'#link_epub:{dict["link"]}']
+    else:
+        return ['--field', f'#link_meta:{dict["link"]}']
+
+
+def calibredb_comments_args(dict):
+    """Provide calibredb arguments to render additional metadata into the comments field."""
     if dict['description'] is not None:
-        description_comment = markdown.markdown(dict['description'])
-
-    comments = '<div>' + link_comment + pages_comment + description_comment + '</div>'
-    return comments
+        description_html = markdown.markdown(dict['description'])
+        return ['--field', f'comments:<div>{description_html}</div>']
+    else:
+        return []
 
 
 #################### MAIN SCRIPT START ####################
@@ -154,7 +173,7 @@ for entry in booklist_entries:
     
     dict = match.groupdict()
 
-    # Normalize the dict as required for the database inserts lateron.
+    # Normalize the dict, cleaning up the title1/2 mess left over from regex processing.
     dict['title'] = dict['title1'] if dict['title1'] is not None else dict['title2']
     dict.pop('title1', None)
     dict.pop('title2', None)
@@ -179,7 +198,7 @@ for dict in booklist_dicts:
             '--library-path', args['CALIBREDB_DIR'],
             'add',
             '--empty',
-            '--title', calibre_title(dict),
+            *calibredb_title_args(dict),
             # Not setting the author as we don't have that data. Defaults to "Unknown".
         ], 
         capture_output = True,
@@ -193,9 +212,11 @@ for dict in booklist_dicts:
         [
             'calibredb',
             '--library-path', args['CALIBREDB_DIR'],
-            'set_metadata', 
-            '--field', 'pubdate:' + calibre_pubdate(dict),
-            '--field', 'comments:' + calibre_comments(dict),
+            'set_metadata',
+            *calibredb_pubdate_args(dict),
+            *calibredb_pages_args(dict),
+            *calibredb_link_args(dict),
+            *calibredb_comments_args(dict),
             dict['calibre_id']
         ]
     )
