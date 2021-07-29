@@ -87,6 +87,19 @@ def formatdate_filter(val):
         return val
 
 
+@jinjia.app_template_filter('formatdateyearonly')
+def formatdate_filter(val):
+    """Custom date format to show only the year where a publishing date is shown to the public."""
+    try:
+        return format_date(val, format='yyyy', locale=get_locale())
+    except AttributeError as e:
+        log.error('Babel error: %s, Current user locale: %s, Current User: %s', e,
+                  current_user.locale,
+                  current_user.name
+                  )
+        return val
+
+
 @jinjia.app_template_filter('formatdateinput')
 def format_date_input(val):
     input_date = val.isoformat().split('T', 1)[0]  # Hack to support dates <1900

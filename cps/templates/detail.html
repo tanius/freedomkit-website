@@ -170,7 +170,7 @@
 
       {% if (entry.pubdate|string)[:10] != '0101-01-01' %}
       <div class="publishing-date">
-        <p>{{_('Published')}}: {{entry.pubdate|formatdate}} </p>
+        <p>{{_('Published')}}: {{entry.pubdate|formatdateyearonly}} </p>
       </div>
       {% endif %}
       {% if cc|length > 0 %}
