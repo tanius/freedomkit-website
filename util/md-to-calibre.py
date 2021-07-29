@@ -199,7 +199,8 @@ for dict in booklist_dicts:
             'add',
             '--empty',
             *calibredb_title_args(dict),
-            # Not setting the author as we don't have that data. Defaults to "Unknown".
+            # Not setting the author would default to "Unknown", but we want "Unknown Author".
+            '--authors', 'Unknown Author'
         ], 
         capture_output = True,
         text = True # Converts captured output to string rather than returning "bytes-like object".
